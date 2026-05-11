@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Know Before You Go — Australian Red Cross Lifeblood</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f7f7f7;
+    color: #1a1a1a;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+  }
+
+  .app {
+    width: 100%;
+    max-width: 560px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(200,16,46,0.10), 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: #C8102E;
+    padding: 1.5rem 1.75rem 1.25rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hbg1 {
+    position: absolute; top: -40px; right: -50px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(255,255,255,0.06); pointer-events: none;
+  }
+  .hbg2 {
+    position: absolute; bottom: -30px; left: -40px;
+    width: 140px; height: 140px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); pointer-events: none;
+  }
+  .org-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 0.3rem;
+    position: relative;
+  }
+  .campaign-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 0.2rem;
+    position: relative;
+  }
+  .tagline {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+    position: relative;
+  }
+
+  /* ── BODY ── */
+  .body { padding: 1.75rem; }
+
+  /* ── SCREENS ── */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ── HOME ── */
+  .game-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #C8102E;
+    margin-bottom: 0.4rem;
+  }
+  .game-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 42px;
+    line-height: 1.0;
+    color: #1a1a1a;
+    margin-bottom: 0.6rem;
+  }
+  .game-title .red { color: #C8102E; }
+  .game-subtitle {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .fun-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .fun-box {
+    background: #fff5f6;
+    border: 1.5px solid #f5b3be;
+    border-radius: 12px;
+    padding: 0.85rem 0.6rem;
+    text-align: center;
+  }
+  .fun-icon { font-size: 22px; margin-bottom: 4px; }
+  .fun-val {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: #C8102E;
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .fun-lbl { font-size: 10px; color: #888; line-height: 1.3; }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 1.5rem;
+  }
+  .pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #fff5f6;
+    border: 1.5px solid #f5b3be;
+    border-radius: 99px;
+    padding: 5px 13px 5px 9px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #C8102E;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+  }
+  .form-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+  }
+  input[type=text], select {
+    width: 100%;
+    padding: 11px 13px;
+    border-radius: 9px;
+    border: 1.5px solid #ddd;
+    background: #fff;
+    color: #1a1a1a;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: auto;
+  }
+  input[type=text]:focus, select:focus { border-color: #C8102E; }
+
+  .btn-red {
+    background: #C8102E;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 28px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.12s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+  .btn-red:hover { background: #a00d24; transform: translateY(-1px); }
+  .btn-red:active { transform: scale(0.98); }
+
+  /* ── QUIZ ── */
+  .progress-wrap {
+    background: #f0f0f0;
+    border-radius: 99px;
+    height: 7px;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #C8102E;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+  .q-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .q-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: #999;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .score-pill {
+    background: #fff5f6;
+    border: 1.5px solid #f5b3be;
+    border-radius: 99px;
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #999;
+  }
+  .score-pill span { color: #C8102E; font-weight: 700; }
+
+  .q-card {
+    background: #fff;
+    border: 1.5px solid #e8e8e8;
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    border-left: 5px solid #C8102E;
+  }
+  .q-tag {
+    display: inline-block;
+    background: #fff5f6;
+    color: #C8102E;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 99px;
+    margin-bottom: 0.75rem;
+    border: 1px solid #f5b3be;
+  }
+  .q-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.35;
+    color: #1a1a1a;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+  .opt-btn {
+    background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 11px;
+    padding: 1rem 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: #1a1a1a;
+    text-align: center;
+    line-height: 1.35;
+  }
+  .opt-btn:hover:not(:disabled) {
+    background: #fff5f6;
+    border-color: #C8102E;
+    color: #C8102E;
+    transform: translateY(-1px);
+  }
+  .opt-btn.correct {
+    background: #f0faf0;
+    border-color: #2e7d32;
+    color: #1b5e20;
+    font-weight: 700;
+  }
+  .opt-btn.wrong {
+    background: #fff5f6;
+    border-color: #C8102E;
+    color: #7f0016;
+    font-weight: 700;
+  }
+  .opt-btn:disabled { cursor: default; transform: none; }
+
+  .feedback-box {
+    background: #fff5f6;
+    border: 1.5px solid #f5b3be;
+    border-radius: 11px;
+    padding: 1rem 1.25rem;
+    margin-top: 0.75rem;
+    display: none;
+    animation: fadeUp 0.25s ease;
+  }
+  .feedback-box.show { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .feedback-result {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 0.4rem;
+  }
+  .feedback-result.correct { color: #2e7d32; }
+  .feedback-result.wrong   { color: #C8102E; }
+  .feedback-text { font-size: 13.5px; color: #444; line-height: 1.6; }
+
+  .next-wrap { margin-top: 1.25rem; text-align: right; }
+  .btn-red-sm {
+    background: #C8102E;
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 24px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+    display: inline-block;
+  }
+  .btn-red-sm:hover { background: #a00d24; }
+
+  /* ── RESULTS ── */
+  .result-top { text-align: center; padding: 0.5rem 0 1.25rem; }
+  .score-ring {
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    background: #fff5f6;
+    border: 5px solid #C8102E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  .score-big {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: #C8102E;
+    line-height: 1;
+  }
+  .score-denom { font-size: 12px; color: #999; }
+  .result-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    color: #1a1a1a;
+    margin-bottom: 0.4rem;
+  }
+  .result-sub {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 0;
+    line-height: 1.6;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .stat-box {
+    background: #fff5f6;
+    border: 1.5px solid #f5b3be;
+    border-radius: 11px;
+    padding: 0.85rem 0.6rem;
+    text-align: center;
+  }
+  .stat-val {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: #C8102E;
+  }
+  .stat-lbl { font-size: 11px; color: #888; margin-top: 2px; }
+
+  .twin-card {
+    background: #fff;
+    border: 2px solid #C8102E;
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .twin-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #C8102E;
+    margin-bottom: 0.85rem;
+  }
+  .twin-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+  }
+  .twin-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #C8102E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .twin-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+  }
+  .twin-detail { font-size: 13px; color: #666; line-height: 1.5; }
+  .twin-stat {
+    background: #fff5f6;
+    border-radius: 9px;
+    padding: 0.85rem 1rem;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+    border: 1px solid #f5b3be;
+  }
+  .twin-stat strong { color: #C8102E; }
+
+  .share-box {
+    background: #C8102E;
+    border-radius: 14px;
+    padding: 1.35rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+    color: #fff;
+  }
+  .share-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    margin-bottom: 0.35rem;
+  }
+  .share-sub { font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 1rem; }
+  .hashtags {
+    display: flex;
+    gap: 7px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .hashtag {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 99px;
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+  .share-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: #fff;
+    color: #C8102E;
+    border: none;
+    border-radius: 9px;
+    padding: 11px 22px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-white:hover { background: #ffe8eb; }
+  .btn-white-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.8);
+    border-radius: 9px;
+    padding: 11px 22px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-white-outline:hover { background: rgba(255,255,255,0.12); }
+
+  .eligibility-btn {
+    background: #C8102E;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 28px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    transition: background 0.15s;
+  }
+  .eligibility-btn:hover { background: #a00d24; }
+
+  .footer-tag { text-align: center; padding-bottom: 0.5rem; }
+  .footer-org { font-size: 11px; color: #bbb; font-style: italic; }
+  .footer-slogan { font-size: 11px; color: #C8102E; font-style: italic; margin-top: 3px; }
+
+  .divider { border: none; border-top: 1px solid #f0f0f0; margin: 1.5rem 0; }
+
+  /* ── COPIED TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 999;
+    white-space: nowrap;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <!-- ══ HOME ══ -->
+  <div class="screen active" id="screen-home">
+    <div class="header">
+      <div class="hbg1"></div>
+      <div class="hbg2"></div>
+      <div class="org-name">Australian Red Cross Lifeblood</div>
+      <div class="campaign-name">Roll Up &amp; Donate With Your Mates</div>
+      <div class="tagline">Together We Know. Together We Give. Together We Save.</div>
+    </div>
+
+    <div class="body">
+      <div class="game-eyebrow">The blood donation challenge</div>
+      <div class="game-title">Know<br>Before<br>You <span class="red">Go.</span></div>
+      <div class="game-subtitle">Test what you really know about blood donation, find the patient who needs your blood type, and share your result with your mates.</div>
+
+      <div class="fun-strip">
+        <div class="fun-box">
+          <div class="fun-icon">💉</div>
+          <div class="fun-val">3 lives</div>
+          <div class="fun-lbl">saved per donation</div>
+        </div>
+        <div class="fun-box">
+          <div class="fun-icon">🌏</div>
+          <div class="fun-val">1 in 4</div>
+          <div class="fun-lbl">eligible donors held back by false beliefs</div>
+        </div>
+        <div class="fun-box">
+          <div class="fun-icon">⏱</div>
+          <div class="fun-val">45 min</div>
+          <div class="fun-lbl">total appointment time</div>
+        </div>
+      </div>
+
+      <div class="pills">
+        <div class="pill"><span>🩸</span> Blood type matcher</div>
+        <div class="pill"><span>🎯</span> 10 questions</div>
+        <div class="pill"><span>⚡</span> 3 minutes</div>
+        <div class="pill"><span>🤝</span> Share with mates</div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label class="form-label">Your first name</label>
+          <input type="text" id="user-name" placeholder="e.g. Priya" />
+        </div>
+        <div>
+          <label class="form-label">Blood type (if known)</label>
+          <select id="blood-type">
+            <option value="">Select...</option>
+            <option value="A+">A+</option>
+            <option value="A-">A−</option>
+            <option value="B+">B+</option>
+            <option value="B-">B−</option>
+            <option value="O+">O+</option>
+            <option value="O-">O−</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB−</option>
+            <option value="Unknown">Not sure</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn-red" onclick="startGame()">
+        <span>Start the challenge</span>
+        <span style="font-size:20px;">→</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══ QUIZ ══ -->
+  <div class="screen" id="screen-quiz">
+    <div class="header" style="padding-bottom:1.25rem;">
+      <div class="hbg1"></div>
+      <div class="org-name">Australian Red Cross Lifeblood</div>
+      <div class="campaign-name" style="font-size:16px;">Know Before You Go</div>
+    </div>
+    <div class="body">
+      <div class="progress-wrap">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="q-meta">
+        <span class="q-num" id="q-num">Question 1 of 10</span>
+        <span class="score-pill">Score: <span id="score-live">0</span></span>
+      </div>
+      <div class="q-card">
+        <div class="q-tag" id="q-tag">Eligibility</div>
+        <div class="q-text" id="q-text">Loading...</div>
+      </div>
+      <div class="options-grid" id="options-grid"></div>
+      <div class="feedback-box" id="feedback-box">
+        <div class="feedback-result" id="feedback-result"></div>
+        <div class="feedback-text" id="feedback-text"></div>
+      </div>
+      <div class="next-wrap">
+        <button class="btn-red-sm" id="next-btn" onclick="nextQuestion()" style="display:none">Next question →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ RESULTS ══ -->
+  <div class="screen" id="screen-result">
+    <div class="header" style="padding-bottom:1.25rem;">
+      <div class="hbg1"></div>
+      <div class="org-name">Australian Red Cross Lifeblood</div>
+      <div class="campaign-name" style="font-size:16px;">Know Before You Go — Your Results</div>
+    </div>
+    <div class="body">
+      <div class="result-top">
+        <div class="score-ring">
+          <div class="score-big" id="final-score">0</div>
+          <div class="score-denom">out of 10</div>
+        </div>
+        <div class="result-title" id="result-title">You know before you go!</div>
+        <div class="result-sub" id="result-sub"></div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-box"><div class="stat-val" id="stat-correct">0</div><div class="stat-lbl">Correct</div></div>
+        <div class="stat-box"><div class="stat-val" id="stat-wrong">0</div><div class="stat-lbl">Busted</div></div>
+        <div class="stat-box"><div class="stat-val" id="stat-pct">0%</div><div class="stat-lbl">Accuracy</div></div>
+      </div>
+
+      <div class="twin-card">
+        <div class="twin-label">🩸 Your blood twin</div>
+        <div class="twin-row">
+          <div class="twin-avatar" id="twin-initials">?</div>
+          <div>
+            <div class="twin-name" id="twin-name"></div>
+            <div class="twin-detail" id="twin-detail"></div>
+          </div>
+        </div>
+        <div class="twin-stat" id="twin-stat"></div>
+      </div>
+
+      <div class="share-box">
+        <div class="share-title" id="share-title">Share your score</div>
+        <div class="share-sub">Challenge your mates — can they beat you?</div>
+        <div class="hashtags">
+          <span class="hashtag">#KnowBeforeYouGo</span>
+          <span class="hashtag">#TogetherWeGive</span>
+          <span class="hashtag">#RollUpAndDonate</span>
+        </div>
+        <div class="share-btns">
+          <button class="btn-white" onclick="copyShare()">Copy share text</button>
+          <button class="btn-white-outline" onclick="resetGame()">Play again</button>
+        </div>
+      </div>
+
+      <button class="eligibility-btn" onclick="window.open('https://www.lifeblood.com.au/blood/am-i-eligible','_blank')">
+        Check my eligibility at Lifeblood →
+      </button>
+
+      <div class="footer-tag">
+        <div class="footer-org">Australian Red Cross Lifeblood · Roll Up &amp; Donate With Your Mates</div>
+        <div class="footer-slogan">Together We Know. Together We Give. Together We Save.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var questions = [
+  {
+    tag: "Eligibility",
+    text: "International students in Australia cannot donate blood.",
+    options: ["True — not eligible", "False — can donate"],
+    correct: 1,
+    feedback: "False! Most international students in Australia are fully eligible to donate blood as long as they meet standard health criteria. Your visa status does not prevent you from donating at any Lifeblood centre."
+  },
+  {
+    tag: "Health belief",
+    text: "A vegetarian or plant-based diet makes your blood too weak to donate.",
+    options: ["True — disqualifies you", "False — diet is fine"],
+    correct: 1,
+    feedback: "False! A vegetarian diet does not disqualify you. What matters is your iron level, which is checked on the day with a quick finger-prick test. Most vegetarians have iron levels well within the eligible range."
+  },
+  {
+    tag: "Process",
+    text: "The whole blood donation appointment takes several hours and leaves you bedridden.",
+    options: ["True — takes hours", "False — under 1 hour"],
+    correct: 1,
+    feedback: "False! The whole appointment takes around 45–60 minutes including registration and recovery. The actual blood draw is only 8–10 minutes. Most donors return to normal activity the same day."
+  },
+  {
+    tag: "Health belief",
+    text: "Donating blood causes permanent weakness or reduces your lifespan.",
+    options: ["True — harmful long-term", "False — body fully recovers"],
+    correct: 1,
+    feedback: "False! Your body replaces donated blood volume within 24–48 hours and restores red blood cells within a few weeks. Hundreds of thousands of Australians donate regularly with no long-term health effects whatsoever."
+  },
+  {
+    tag: "Eligibility",
+    text: "You must wait at least 12 weeks between whole blood donations.",
+    options: ["True — 12 week wait", "False — no wait needed"],
+    correct: 0,
+    feedback: "True! The minimum interval for whole blood donation is 12 weeks — about 3 months. This gives your body time to fully restore its red blood cell levels before your next donation."
+  },
+  {
+    tag: "Donation experience",
+    text: "Walking into a donor centre alone for the first time can feel daunting and unfamiliar.",
+    options: ["True — can feel daunting", "False — always easy"],
+    correct: 0,
+    feedback: "True — and this is exactly what we are working to change! Coming with a friend, attending a campus Donate Together Day, or being greeted by a peer ambassador makes the whole experience far less intimidating. You never have to walk in alone."
+  },
+  {
+    tag: "Donation experience",
+    text: "Lifeblood staff are trained to answer cultural, religious, and dietary questions from first-time donors.",
+    options: ["True — trained to support", "False — no cultural support"],
+    correct: 0,
+    feedback: "True! Lifeblood staff support first-time donors and can address questions about fasting periods, vegetarian diets, privacy, and religious considerations. No question is too small — just ask."
+  },
+  {
+    tag: "Donation experience",
+    text: "Donating blood with a friend significantly reduces stress and increases the chance of donating again.",
+    options: ["True — buddy system works", "False — makes no difference"],
+    correct: 0,
+    feedback: "True! Research consistently shows that social support during a first donation reduces anxiety and increases the likelihood of returning. Booking with a friend is one of the best things you can do — that is why we say: Donate With Your Mates!"
+  },
+  {
+    tag: "Blood type",
+    text: "B+ blood type is particularly rare and valuable in Australia's donor pool.",
+    options: ["True — rare in Australia", "False — very common here"],
+    correct: 0,
+    feedback: "True! B+ is relatively common among Indian-background populations but less common in Australia's general donor pool. Donors with B+ and other Indian-prevalent blood types are especially valuable for matching with patients of South Asian heritage."
+  },
+  {
+    tag: "Impact",
+    text: "One blood donation can help save up to 3 different patients.",
+    options: ["True — up to 3 patients", "False — only 1 patient"],
+    correct: 0,
+    feedback: "True! A single whole blood donation is separated into red cells, platelets, and plasma — three different components that can each go to a different patient in need. Your one donation. Three lives."
+  }
+];
+
+var bloodTwins = {
+  "A+":  { name: "Anjali", age: 29, city: "Melbourne", condition: "recovering from surgery after a road accident", stat: "<strong>A+ is needed by about 31% of patients.</strong> Your donation could reach Anjali within days of your appointment. A+ is always in demand across Australia.", rarity: "Common but always urgently needed" },
+  "A-":  { name: "Rohan", age: 45, city: "Sydney", condition: "undergoing chemotherapy for leukaemia", stat: "<strong>A− is rare — only 7% of Australians have it.</strong> In emergencies it can be given to any A or O patient, making it one of the most critically needed types in Australian hospitals.", rarity: "Rare and critically needed" },
+  "B+":  { name: "Meera", age: 34, city: "Brisbane", condition: "awaiting a liver transplant", stat: "<strong>B+ is found in roughly 20% of the Indian population but only 8% of Australia's general donor pool.</strong> Your blood is especially valuable — there are patients like Meera who need a matched donor right now.", rarity: "Rare in Australia, common in India — a critical gap" },
+  "B-":  { name: "Kavya", age: 22, city: "Sydney", condition: "managing sickle cell anaemia requiring regular transfusions", stat: "<strong>B− donors are among the rarest — only 2% of Australians.</strong> Kavya needs regular matched transfusions and donors like you are extraordinarily difficult to find.", rarity: "Among the rarest types in Australia" },
+  "O+":  { name: "Arjun", age: 38, city: "Melbourne", condition: "recovering from emergency cardiac surgery", stat: "<strong>O+ is the most transfused blood type worldwide.</strong> Arjun and thousands like him rely on O+ donors every single day. Lifeblood needs O+ donations more than almost any other type.", rarity: "Most needed globally — always short" },
+  "O-":  { name: "Priya", age: 7, city: "Adelaide", condition: "born premature and needing emergency transfusions", stat: "<strong>O− is the universal donor type</strong> — used in emergencies when there is no time to check blood type. Only 9% of people have it, but every hospital in Australia needs it stocked at all times.", rarity: "Universal donor — irreplaceable in emergencies" },
+  "AB+": { name: "Suresh", age: 62, city: "Perth", condition: "receiving plasma treatment for a rare autoimmune condition", stat: "<strong>AB+ donors can give plasma to any patient regardless of blood type.</strong> AB plasma is the universal plasma type and is always critically short across Australia.", rarity: "Universal plasma donor — always needed" },
+  "AB-": { name: "Divya", age: 31, city: "Sydney", condition: "pregnant with twins requiring specialised blood matching", stat: "<strong>AB− is the rarest blood type — less than 1% of people have it.</strong> You are genuinely one in a hundred. Your donation cannot be replaced by anyone else.", rarity: "Rarest of all — 1 in 100 people" },
+  "Unknown": { name: "a patient near you", age: null, city: "Australia", condition: "waiting for a matched donation right now", stat: "<strong>Every single blood type is needed.</strong> When you donate for the first time, Lifeblood identifies your blood type and matches you to the patients who need it most.", rarity: "Every type needed — none wasted" }
+};
+
+var currentQ = 0, score = 0, answered = false, userName = "", bloodType = "";
+
+function startGame() {
+  userName = document.getElementById('user-name').value.trim() || "You";
+  bloodType = document.getElementById('blood-type').value || "Unknown";
+  currentQ = 0; score = 0;
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  var q = questions[currentQ];
+  document.getElementById('q-num').textContent = "Question " + (currentQ + 1) + " of " + questions.length;
+  document.getElementById('q-tag').textContent = q.tag;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('score-live').textContent = score;
+  document.getElementById('progress-fill').style.width = ((currentQ / questions.length) * 100) + '%';
+  var grid = document.getElementById('options-grid');
+  grid.innerHTML = '';
+  q.options.forEach(function(opt, i) {
+    var btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = opt;
+    btn.setAttribute('data-idx', i);
+    btn.onclick = function() { selectAnswer(i); };
+    grid.appendChild(btn);
+  });
+  document.getElementById('feedback-box').classList.remove('show');
+  document.getElementById('next-btn').style.display = 'none';
+  answered = false;
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  var q = questions[currentQ];
+  var buttons = document.querySelectorAll('.opt-btn');
+  buttons.forEach(function(b) { b.disabled = true; });
+  buttons[q.correct].classList.add('correct');
+  if (idx !== q.correct) buttons[idx].classList.add('wrong');
+  if (idx === q.correct) score++;
+  document.getElementById('score-live').textContent = score;
+  var fr = document.getElementById('feedback-result');
+  fr.className = 'feedback-result ' + (idx === q.correct ? 'correct' : 'wrong');
+  fr.textContent = idx === q.correct ? '✓ Correct!' : '✗ Not quite — here is the truth:';
+  document.getElementById('feedback-text').textContent = q.feedback;
+  document.getElementById('feedback-box').classList.add('show');
+  document.getElementById('next-btn').style.display = 'inline-block';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= questions.length) showResults();
+  else renderQuestion();
+}
+
+function showResults() {
+  showScreen('screen-result');
+  document.getElementById('final-score').textContent = score;
+  document.getElementById('stat-correct').textContent = score;
+  document.getElementById('stat-wrong').textContent = questions.length - score;
+  document.getElementById('stat-pct').textContent = Math.round((score / questions.length) * 100) + '%';
+  document.getElementById('progress-fill').style.width = '100%';
+  var title, sub;
+  if (score >= 9) { title = "You know before you go!"; sub = "Outstanding. You know more about blood donation than most Australians. You are ready to roll up and donate."; }
+  else if (score >= 7) { title = "Almost there!"; sub = "A few things caught you out — but now you know the truth. Check your eligibility and book your first donation today."; }
+  else if (score >= 5) { title = "Good start!"; sub = "There is more to blood donation than you thought — and now you know it. Share what you have learned with your mates."; }
+  else { title = "Eye-opener!"; sub = "These are the exact beliefs that stop people from donating. Now you know the truth — that makes you the perfect person to spread it."; }
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-sub').textContent = sub;
+  var twin = bloodTwins[bloodType] || bloodTwins["Unknown"];
+  var nm = twin.name;
+  var initials = nm === "a patient near you" ? "?" : (nm.indexOf(' ') > -1 ? nm.split(' ').map(function(w){ return w[0]; }).join('') : nm.substring(0,2).toUpperCase());
+  document.getElementById('twin-initials').textContent = initials;
+  document.getElementById('twin-name').textContent = nm;
+  var detail = twin.condition.charAt(0).toUpperCase() + twin.condition.slice(1);
+  if (twin.age) detail = twin.age + ", " + twin.city + " — " + detail;
+  else detail = twin.city + " — " + detail;
+  document.getElementById('twin-detail').textContent = detail;
+  document.getElementById('twin-stat').innerHTML = twin.stat;
+  document.getElementById('share-title').textContent = userName + " scored " + score + "/10";
+}
+
+function copyShare() {
+  var twin = bloodTwins[bloodType] || bloodTwins["Unknown"];
+  var twinName = twin.name === "a patient near you" ? "a patient in Australia" : twin.name;
+  var text = userName + " scored " + score + "/10 on the Australian Red Cross Lifeblood Know Before You Go challenge!\n\nMy blood type (" + bloodType + ") is needed for patients like " + twinName + " right now.\n\n" + twin.rarity + ".\n\nTake the challenge, find your blood twin, and check your eligibility\n\n#KnowBeforeYouGo #TogetherWeGive #RollUpAndDonate\nlifeblood.com.au";
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() { showToast(); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast();
+  }
+}
+
+function showToast() {
+  var t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2500);
+}
+
+function resetGame() {
+  currentQ = 0; score = 0;
+  document.getElementById('user-name').value = '';
+  document.getElementById('blood-type').value = '';
+  showScreen('screen-home');
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
